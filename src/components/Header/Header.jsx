@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X, Search } from "lucide-react";
+import Logo from "../../assets/logo.svg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,11 +8,7 @@ const Header = () => {
   return (
     <nav className="relative flex items-center justify-between gap-5 bg-blue-950 px-6 py-4 text-white lg:px-10">
       <a href="#home">
-        <img
-          src="../src/assets/logo.svg"
-          alt="logo"
-          className="w-40 cursor-pointer lg:w-50"
-        />
+        <img src={Logo} alt="logo" className="w-40 cursor-pointer lg:w-50" />
       </a>
 
       <div className="hidden w-1/2 items-center gap-2 rounded-full bg-blue-900 p-3 lg:flex">
