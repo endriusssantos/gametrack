@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+html, body {
+  height: 100%;
+  background-color: #0f172a;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  margin: 0;
+}
