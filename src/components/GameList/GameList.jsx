@@ -1,10 +1,23 @@
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchGames } from "../../services/rawg";
 
-const GameList = () => {
+const GameList = ({ searchTerm }) => {
+  const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
+
+  useEffect(() => {
+    const handler = setTimeout(() => setDebouncedSearch(searchTerm), 500);
+    return () => clearTimeout(handler);
+  }, [searchTerm]);
+
+  const [page, setPage] = useState(1);
+  const pageSize = 9;
+
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["games"],
-    queryFn: () => fetchGames({ page_size: 9 }),
+    queryKey: ["games", debouncedSearch, page],
+    queryFn: () =>
+      fetchGames({ page, page_size: pageSize, search: debouncedSearch }),
+    keepPreviousData: true,
     staleTime: 1000 * 60 * 5,
   });
 
@@ -23,7 +36,7 @@ const GameList = () => {
 
   return (
     <div className="p-6">
-      <h2 className="mb-4 text-xl font-semibold text-white">Top Jogos</h2>
+      <h2 className="mb-4 text-xl font-semibold text-white">Jogos</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {games.map((g) => (
           <div key={g.id} className="overflow-hidden rounded bg-slate-800 p-2">
@@ -55,6 +68,25 @@ const GameList = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="mt-6 flex justify-center gap-4 text-white">
+        <button
+          onClick={() => setPage((old) => Math.max(old - 1, 1))}
+          disabled={page === 1}
+          className="cursor-pointer rounded bg-blue-800 px-4 py-2 hover:bg-blue-700 disabled:opacity-50"
+        >
+          Anterior
+        </button>
+
+        <span className="px-4 py-2">{page}</span>
+
+        <button
+          onClick={() => setPage((old) => old + 1)}
+          disabled={!data?.next}
+          className="cursor-pointer rounded bg-blue-800 px-4 py-2 hover:bg-blue-700 disabled:opacity-50"
+        >
+          Próxima
+        </button>
       </div>
     </div>
   );

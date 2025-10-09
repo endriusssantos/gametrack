@@ -3,10 +3,11 @@ import api from "./api";
 export async function fetchGames({
   page = 1,
   page_size = 12,
-  ordering = "-added",
+  ordering = "-relevance",
+  search = "",
 } = {}) {
   const { data } = await api.get("/games", {
-    params: { page, page_size, ordering },
+    params: { page, page_size, ordering, search },
   });
   return data;
 }

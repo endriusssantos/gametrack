@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X, Search } from "lucide-react";
 import Logo from "../../assets/logo.svg";
 
-const Header = () => {
+const Header = ({ searchTerm, setSearchTerm }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -17,6 +17,8 @@ const Header = () => {
           type="text"
           placeholder="Buscar jogos..."
           className="w-full bg-transparent text-sm text-white placeholder-gray-400 outline-none"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
@@ -37,6 +39,8 @@ const Header = () => {
             type="text"
             placeholder="Buscar jogos..."
             className="w-full bg-transparent text-white placeholder-gray-400 outline-none"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
 
