@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchGames } from "../../services/rawg";
 
-const GameList = ({ searchTerm }) => {
+const GameList = ({ searchTerm, page, setPage }) => {
   const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
 
   useEffect(() => {
@@ -10,7 +10,6 @@ const GameList = ({ searchTerm }) => {
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
-  const [page, setPage] = useState(1);
   const pageSize = 9;
 
   const { data, isLoading, isError, error } = useQuery({

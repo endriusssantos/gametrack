@@ -2,12 +2,18 @@ import { useState } from "react";
 import { Menu, X, Search } from "lucide-react";
 import Logo from "../../assets/logo.svg";
 
-const Header = ({ searchTerm, setSearchTerm }) => {
+const Header = ({ searchTerm, setSearchTerm, resetApp }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="relative flex items-center justify-between gap-5 bg-blue-950 px-6 py-4 text-white lg:px-10">
-      <a href="#home">
+      <a
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          resetApp();
+        }}
+      >
         <img src={Logo} alt="logo" className="w-40 cursor-pointer lg:w-50" />
       </a>
 
