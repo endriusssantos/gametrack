@@ -4,6 +4,7 @@ import GamesList from "./components/GameList/GameList";
 import { Routes, Route } from "react-router-dom";
 import GameDetails from "./components/GameDetails/GameDetails";
 import About from "./components/About/About";
+import MyGames from "./components/MyGames/MyGames";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,6 +32,7 @@ const App = () => {
         />
         <Route path="/game/:id" element={<GameDetails />} />
         <Route path="/about" element={<About />} />
+        <Route path="/my-games" element={<MyGames />} />
       </Routes>
     </div>
   );

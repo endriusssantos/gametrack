@@ -37,7 +37,7 @@ const GameList = ({ searchTerm, page, setPage }) => {
   return (
     <div className="p-6">
       <h2 className="mb-4 text-xl font-semibold text-white">Jogos</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {games.map((g) => (
           <div key={g.id} className="overflow-hidden rounded bg-slate-800 p-2">
             <img
