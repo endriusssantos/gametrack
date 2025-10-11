@@ -31,8 +31,8 @@ const GameDetails = () => {
   }
 
   return (
-    <div className="m-auto flex max-w-1/2 flex-col gap-5 rounded-2xl bg-blue-950 p-6 text-white">
-      <h1 className="text-center text-2xl font-bold">{data.name}</h1>
+    <div className="mx-auto my-5 flex max-w-[90%] flex-col gap-5 rounded-2xl bg-blue-950 p-6 text-center text-white lg:m-auto lg:max-w-1/2">
+      <h1 className="text-2xl font-bold">{data.name}</h1>
       <img
         src={data.background_image}
         alt={data.name}

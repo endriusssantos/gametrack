@@ -50,36 +50,40 @@ const Header = ({ searchTerm, setSearchTerm, resetApp }) => {
         </div>
 
         <li>
-          <a
-            href="#home"
+          <Link
+            to="/"
+            onClick={() => setIsOpen(false)}
             className="rounded-xl px-3 py-2 transition-all duration-300 hover:bg-blue-900"
           >
             Início
-          </a>
+          </Link>
         </li>
         <li className="lg:flex">
-          <a
-            href="#account"
+          <Link
+            to="/account"
+            onClick={() => setIsOpen(false)}
             className="rounded-xl px-3 py-2 transition-all duration-300 hover:bg-blue-900"
           >
             Minha Conta
-          </a>
+          </Link>
         </li>
         <li className="lg:flex">
-          <a
-            href="#games"
+          <Link
+            to="/my-games"
+            onClick={() => setIsOpen(false)}
             className="rounded-xl px-3 py-2 transition-all duration-300 hover:bg-blue-900"
           >
             Meus Jogos
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#about"
+          <Link
+            to="/about"
+            onClick={() => setIsOpen(false)}
             className="rounded-xl px-3 py-2 transition-all duration-300 hover:bg-blue-900"
           >
             Sobre
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
