@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "./components/Header/Header";
 import GamesList from "./components/GameList/GameList";
 import { Routes, Route } from "react-router-dom";
+import GameDetails from "./components/GameDetails/GameDetails";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,6 +28,7 @@ const App = () => {
             <GamesList searchTerm={searchTerm} page={page} setPage={setPage} />
           }
         />
+        <Route path="/game/:id" element={<GameDetails />} />
       </Routes>
     </div>
   );

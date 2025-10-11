@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchGames } from "../../services/rawg";
+import { Link } from "react-router-dom";
 
 const GameList = ({ searchTerm, page, setPage }) => {
   const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
@@ -60,9 +61,12 @@ const GameList = ({ searchTerm, page, setPage }) => {
                 </p>
               </div>
               <div>
-                <button className="cursor-pointer rounded-xl px-3 py-2 text-white transition-all duration-300 hover:bg-blue-900">
+                <Link
+                  to={`/game/${g.id}`}
+                  className="cursor-pointer rounded-xl px-3 py-2 text-white transition-all duration-300 hover:bg-blue-900"
+                >
                   Ver detalhes
-                </button>
+                </Link>
               </div>
             </div>
           </div>
