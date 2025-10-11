@@ -1,21 +1,20 @@
 import { useState } from "react";
 import { Menu, X, Search } from "lucide-react";
 import Logo from "../../assets/logo.svg";
+import { Link } from "react-router-dom";
 
 const Header = ({ searchTerm, setSearchTerm, resetApp }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleLogoClick = () => {
+    resetApp();
+  };
+
   return (
     <nav className="relative flex items-center justify-between gap-5 bg-blue-950 px-6 py-4 text-white lg:px-10">
-      <a
-        href="#"
-        onClick={(e) => {
-          e.preventDefault();
-          resetApp();
-        }}
-      >
+      <Link to="/" onClick={handleLogoClick}>
         <img src={Logo} alt="logo" className="w-40 cursor-pointer lg:w-50" />
-      </a>
+      </Link>
 
       <div className="hidden w-1/2 items-center gap-2 rounded-full bg-blue-900 p-3 lg:flex">
         <Search size={18} className="text-gray-300" />
