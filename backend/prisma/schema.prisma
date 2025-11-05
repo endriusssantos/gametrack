@@ -10,11 +10,11 @@ datasource db {
 model games {
   id           Int          @id @default(autoincrement())
   title        String       @db.VarChar(150)
-  plataform    String?      @db.VarChar(50)
+  platform     String?      @db.VarChar(50)
   genre        String?      @db.VarChar(50)
   cover_url    String?
   release_year Int?
-  create_at    DateTime?    @default(now()) @db.Timestamp(6)
+  created_at   DateTime?    @default(now()) @db.Timestamp(6)
   user_games   user_games[]
 }
 
@@ -28,9 +28,9 @@ model user_games {
   started_at  DateTime? @db.Date
   finished_at DateTime? @db.Date
   created_at  DateTime? @default(now()) @db.Timestamp(6)
-  update_at   DateTime? @default(now()) @db.Timestamp(6)
-  games       games     @relation(fields: [game_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  users       users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  updated_at  DateTime? @updatedAt 
+  games       games     @relation(fields: [game_id], references: [id], onDelete: Cascade)
+  users       users     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@unique([user_id, game_id], map: "unique_user_game")
 }
@@ -41,6 +41,6 @@ model users {
   email         String       @unique @db.VarChar(150)
   password_hash String       @db.VarChar(255)
   created_at    DateTime?    @default(now()) @db.Timestamp(6)
-  update_at     DateTime?    @default(now()) @db.Timestamp(6)
+  updated_at    DateTime?    @updatedAt
   user_games    user_games[]
 }
