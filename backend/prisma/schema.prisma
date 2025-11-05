@@ -9,6 +9,7 @@ datasource db {
 
 model games {
   id           Int          @id @default(autoincrement())
+  rawg_id      Int      @unique
   title        String       @db.VarChar(150)
   platform     String?      @db.VarChar(50)
   genre        String?      @db.VarChar(50)
