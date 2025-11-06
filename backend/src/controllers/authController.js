@@ -56,3 +56,11 @@ export async function loginUser(req, res) {
     res.status(500).json({ error: "Erro ao fazer login" });
   }
 }
+
+export async function getMe(req, res) {
+  try {
+    res.json(req.user);
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao obter informações do usuário" });
+  }
+}
