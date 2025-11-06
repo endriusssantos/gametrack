@@ -43,7 +43,15 @@ export async function loginUser(req, res) {
       expiresIn: "7d",
     });
 
-    res.json({ message: "Login realizado com sucesso", token });
+    res.json({
+      message: "Login realizado com sucesso",
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      },
+    });
   } catch (error) {
     res.status(500).json({ error: "Erro ao fazer login" });
   }
