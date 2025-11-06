@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Header from "./components/Header/Header";
-import GamesList from "./components/GameList/GameList";
 import { Routes, Route } from "react-router-dom";
-import GameDetails from "./components/GameDetails/GameDetails";
-import About from "./components/About/About";
-import MyGames from "./components/MyGames/MyGames";
+import GameDetails from "./pages/GameDetails";
+import About from "./pages/About";
+import MyGames from "./pages/MyGames";
+import Home from "./pages/Home";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,7 +27,7 @@ const App = () => {
         <Route
           path="/"
           element={
-            <GamesList searchTerm={searchTerm} page={page} setPage={setPage} />
+            <Home searchTerm={searchTerm} page={page} setPage={setPage} />
           }
         />
         <Route path="/game/:id" element={<GameDetails />} />

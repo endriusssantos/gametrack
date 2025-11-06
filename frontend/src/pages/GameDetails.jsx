@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { fetchGameById } from "../../services/rawg";
+import { fetchGameById } from "../services/rawg";
 import { useQuery } from "@tanstack/react-query";
 
 const GameDetails = () => {
