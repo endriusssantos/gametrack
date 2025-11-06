@@ -1,4 +1,4 @@
-import api from "./api";
+import {rawgApi} from "./api";
 
 export async function fetchGames({
   page = 1,
@@ -6,13 +6,13 @@ export async function fetchGames({
   ordering = "-relevance",
   search = "",
 } = {}) {
-  const { data } = await api.get("/games", {
+  const { data } = await rawgApi.get("/games", {
     params: { page, page_size, ordering, search },
   });
   return data;
 }
 
 export async function fetchGameById(id) {
-  const { data } = await api.get(`/games/${id}`);
+  const { data } = await rawgApi.get(`/games/${id}`);
   return data;
 }
