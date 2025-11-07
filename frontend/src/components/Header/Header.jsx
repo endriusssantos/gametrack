@@ -60,7 +60,7 @@ const Header = ({ searchTerm, setSearchTerm, resetApp }) => {
         </li>
         <li className="lg:flex">
           <Link
-            to="/account"
+            to="/login"
             onClick={() => setIsOpen(false)}
             className="rounded-xl px-3 py-2 transition-all duration-300 hover:bg-blue-900"
           >

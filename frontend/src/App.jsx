@@ -5,6 +5,7 @@ import GameDetails from "./pages/GameDetails";
 import About from "./pages/About";
 import MyGames from "./pages/MyGames";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,8 +32,9 @@ const App = () => {
           }
         />
         <Route path="/game/:id" element={<GameDetails />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/my-games" element={<MyGames />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   );
