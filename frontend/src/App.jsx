@@ -6,10 +6,14 @@ import About from "./pages/About";
 import MyGames from "./pages/MyGames";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
+import { useContext } from "react";
+import { AuthContext } from "./contexts/AuthContext";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
+  const { user } = useContext(AuthContext);
 
   const resetApp = () => {
     setSearchTerm("");
@@ -32,8 +36,9 @@ const App = () => {
           }
         />
         <Route path="/game/:id" element={<GameDetails />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/my-games" element={<MyGames />} />
+        <Route path="/my-games" element={user ? <MyGames /> : <Login />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </div>

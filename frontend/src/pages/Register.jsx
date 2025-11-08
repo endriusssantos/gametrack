@@ -1,14 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { backendApi } from "../services/api.js";
-import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 
-export default function Login() {
+export default function Register() {
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
-
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,15 +18,10 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const res = await backendApi.post("/auth/login", { email, password });
-      const token = res.data.token;
-
-      if (token) {
-        login(token);
-        navigate("/");
-      }
+      await backendApi.post("/auth/register", { name, email, password });
+      navigate("/login");
     } catch (err) {
-      setError(err.response?.data?.error || "Erro ao fazer login");
+      setError(err.response?.data?.error || "Erro ao cadastrar usuário");
     } finally {
       setLoading(false);
     }
@@ -42,12 +34,23 @@ export default function Login() {
         className="w-96 rounded-2xl bg-slate-800 p-8"
       >
         <h1 className="mb-6 text-center text-2xl font-bold text-white">
-          Entrar
+          Criar Conta
         </h1>
 
         {error && (
           <p className="mb-4 text-center text-sm text-red-500">{error}</p>
         )}
+
+        <label className="mb-3 block">
+          <span className="text-white">Nome</span>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="mt-1 w-full rounded-md bg-gray-100 p-2 outline-none"
+            required
+          />
+        </label>
 
         <label className="mb-3 block">
           <span className="text-white">Email</span>
@@ -87,12 +90,12 @@ export default function Login() {
           disabled={loading}
           className="w-full cursor-pointer rounded-md bg-blue-600 py-2 font-semibold text-white transition hover:bg-blue-700"
         >
-          {loading ? "Entrando..." : "Entrar"}
+          {loading ? "Cadastrando..." : "Cadastrar"}
         </button>
         <p className="mt-4 text-center text-sm text-white">
-          Ainda não tem uma conta?{" "}
-          <a href="/register" className="text-blue-400 hover:text-blue-300">
-            Cadastre-se
+          Já tem uma conta?{" "}
+          <a href="/login" className="text-blue-400 hover:text-blue-300">
+            Entrar
           </a>
         </p>
       </form>
