@@ -1,13 +1,22 @@
-import { useState } from "react";
-import { Menu, X, Search } from "lucide-react";
+import { useState, useContext } from "react";
+import { Menu, X, Search, LogOut } from "lucide-react";
 import Logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Header = ({ searchTerm, setSearchTerm, resetApp }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const { user, logout } = useContext(AuthContext);
 
   const handleLogoClick = () => {
     resetApp();
+  };
+
+  const handleLogout = () => {
+    logout();
+    setShowMenu(false);
+    setIsOpen(false);
   };
 
   return (
@@ -15,7 +24,6 @@ const Header = ({ searchTerm, setSearchTerm, resetApp }) => {
       <Link to="/" onClick={handleLogoClick}>
         <img src={Logo} alt="logo" className="w-40 cursor-pointer lg:w-50" />
       </Link>
-
       <div className="hidden w-1/2 items-center gap-2 rounded-full bg-blue-900 p-3 lg:flex">
         <Search size={18} className="text-gray-300" />
         <input
@@ -26,7 +34,6 @@ const Header = ({ searchTerm, setSearchTerm, resetApp }) => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-
       <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? <X size={28} /> : <Menu size={28} />}
       </button>
@@ -36,7 +43,7 @@ const Header = ({ searchTerm, setSearchTerm, resetApp }) => {
           isOpen
             ? "visible opacity-100"
             : "invisible opacity-0 lg:visible lg:opacity-100"
-        } `}
+        }`}
       >
         <div className="flex w-4/5 items-center gap-2 rounded-full bg-blue-900 px-3 py-2 lg:hidden">
           <Search size={18} className="text-gray-300" />
@@ -58,16 +65,39 @@ const Header = ({ searchTerm, setSearchTerm, resetApp }) => {
             Início
           </Link>
         </li>
-        <li className="lg:flex">
-          <Link
-            to="/login"
-            onClick={() => setIsOpen(false)}
-            className="rounded-xl px-3 py-2 transition-all duration-300 hover:bg-blue-900"
-          >
-            Minha Conta
-          </Link>
+
+        <li className="relative">
+          {user ? (
+            <div className="flex flex-col items-center">
+              <button
+                onClick={() => setShowMenu(!showMenu)}
+                className="flex cursor-pointer items-center gap-2 rounded-xl px-3 py-2 transition-all duration-300 hover:bg-blue-900"
+              >
+                {user.name}
+              </button>
+              {showMenu && (
+                <div className="absolute top-12 w-32 rounded-md bg-blue-900 text-white shadow-md">
+                  <button
+                    onClick={handleLogout}
+                    className="flex w-full cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-sm hover:bg-blue-950"
+                  >
+                    <LogOut size={16} /> Sair
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              onClick={() => setIsOpen(false)}
+              className="rounded-xl px-3 py-2 transition-all duration-300 hover:bg-blue-900"
+            >
+              Minha Conta
+            </Link>
+          )}
         </li>
-        <li className="lg:flex">
+
+        <li>
           <Link
             to="/my-games"
             onClick={() => setIsOpen(false)}
@@ -76,6 +106,7 @@ const Header = ({ searchTerm, setSearchTerm, resetApp }) => {
             Meus Jogos
           </Link>
         </li>
+
         <li>
           <Link
             to="/about"
