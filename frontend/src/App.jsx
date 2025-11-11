@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Header from "./components/Header/Header";
 import { Routes, Route } from "react-router-dom";
 import GameDetails from "./pages/GameDetails";
@@ -7,7 +7,6 @@ import MyGames from "./pages/MyGames";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { useContext } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 
 const App = () => {
@@ -25,7 +24,10 @@ const App = () => {
       <Header
         resetApp={resetApp}
         searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
+        setSearchTerm={(term) => {
+          setSearchTerm(term);
+          setPage(1);
+        }}
       />
 
       <Routes>
