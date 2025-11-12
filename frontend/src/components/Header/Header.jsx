@@ -20,7 +20,7 @@ const Header = ({ searchTerm, setSearchTerm, resetApp }) => {
   };
 
   return (
-    <nav className="relative flex items-center justify-between gap-5 bg-blue-950 px-6 py-4 text-white lg:px-10">
+    <nav className="relative z-1 flex items-center justify-between gap-5 bg-blue-950 px-6 py-4 text-white lg:px-10">
       <Link to="/" onClick={handleLogoClick}>
         <img src={Logo} alt="logo" className="w-40 cursor-pointer lg:w-50" />
       </Link>
