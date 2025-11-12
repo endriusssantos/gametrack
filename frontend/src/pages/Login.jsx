@@ -91,9 +91,9 @@ export default function Login() {
         </button>
         <p className="mt-4 text-center text-sm text-white">
           Ainda não tem uma conta?{" "}
-          <a href="/register" className="text-blue-400 hover:text-blue-300">
+          <Link to="/register" className="text-blue-400 hover:text-blue-300">
             Cadastre-se
-          </a>
+          </Link>
         </p>
       </form>
     </div>
