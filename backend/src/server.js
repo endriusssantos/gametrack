@@ -9,10 +9,14 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["gametrack-nine.vercel.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://gametrack-nine.vercel.app",
+    ],
     credentials: true,
   })
 );
+
 app.use(express.json());
 
 app.use("/auth", authRoutes);
