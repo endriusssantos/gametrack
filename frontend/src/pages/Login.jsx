@@ -4,6 +4,7 @@ import { backendApi } from "../services/api.js";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { Eye, EyeOff } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
