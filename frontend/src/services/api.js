@@ -8,7 +8,7 @@ export const rawgApi = axios.create({
 });
 
 export const backendApi = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://gametrack-backend.onrender.com",
 });
 
 backendApi.interceptors.request.use((config) => {
