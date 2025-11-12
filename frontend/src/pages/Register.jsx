@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { backendApi } from "../services/api.js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 
 export default function Register() {
@@ -94,9 +94,9 @@ export default function Register() {
         </button>
         <p className="mt-4 text-center text-sm text-white">
           Já tem uma conta?{" "}
-          <a href="/login" className="text-blue-400 hover:text-blue-300">
+          <Link href="/login" className="text-blue-400 hover:text-blue-300">
             Entrar
-          </a>
+          </Link>
         </p>
       </form>
     </div>
