@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
-import userGamesRoutes from "./routes/userGames.routes.js";
+import userGamesRoutes from "./routes/userGamesRoutes.js";
 
 dotenv.config();
 const app = express();
